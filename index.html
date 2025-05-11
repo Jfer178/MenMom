@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Para mi Mamá ❤️</title>
+</head>
+<body>
+    <div class="loading">
+        <div class="loading-text">TE AMAMOS MAMÁ ❤️</div>
+    </div>
+
+    <div class="slideshow-container">
+        <div class="slide active">
+            <img src="../img/WhatsApp Image 2025-05-10 at 12.17.14 PM (1).jpeg" alt="Momento especial 1">
+        </div>
+        <div class="slide">
+            <img src="../img/WhatsApp Image 2025-05-10 at 12.17.18 PM.jpeg" alt="Momento especial 2">
+        </div>
+        
+    </div>
+
+    <!-- Carta Section (Initially Hidden) -->
+    <div class="carta-section" style="display: none;">
+        <h1>¡Feliz Dia Mamá! ❤️</h1>
+        <div class="contenedor">
+            <div class="envoltura-sobre">
+                <div class="sobre">
+                    <div class="carta">
+                        <div class="contenido">
+                            <strong>Para: Brigitte Munera</strong>
+                            <p>
+                                Hoy es <strong>Tu dia mamá</strong>, que nos enseñó con<em> amor</em>, la <em>paciencia</em> y sacrificio. Gracias mamá, 
+                                por ser refugio en los días difíciles, por cada sonrisa que nos regalaste aún en medio del cansancio y por 
+                                tu fuerza que siempre nos inspira."<strong>te amo</strong>" en <strong> 10 MILLONES</strong> Tu amor es el motor silencioso que impulsa nuestras vidas. 
+                                Nada en este mundo se compara con tu entrega y tu corazón. Hoy y siempre, te honramos y te agradecemos por todo lo que eres. 
+                                Gracias por hacer de nuestras vidas una versión mejorada, porque sin ti no seríamos lo que somos hoy en dia. Gracias por todas esas trasnochadas, 
+                                por regañarnos cuando lo neceitamos, decirnos las cosas que tenemos que oir, por tu amor incondicional y por ser la mejor mamá del mundo. <br> <strong>Feliz Dia Mamá</strong>, mi <em>lugar seguro</em>. <br> Con mucho <strong>AMOR</strong>, <br> Tu Familia  
+                                💕. <br> <span style="font-size: 0.9em; color: rgb(172, 153, 47);">PD: tu regalo esta en tu cuenta de nequi 😘</span> <br> <code>"Gracias por amarnos tanto, te amo mucho mamá ❤️."</code>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="corazon"></div>
+                <div class="solapa-derecha"></div>
+                <div class="solapa-izquierda"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/script_v1.js"></script>
+    <script src="../scripts/script_v2.js"></script>
+    <script src="../scripts/entrada.js"></script>
+    <script>
+        // Modificar el script de entrada para mostrar la carta en lugar de redirigir
+        document.addEventListener('DOMContentLoaded', function() {
+            // Crear el elemento de audio
+            const audio = new Audio('/music/Música de Fondo Instrumental Inspiradora - Música para Videos.mp3');
+            audio.loop = true;
+            audio.volume = 0.5;
+
+            // Guardar el estado de la música en localStorage
+            function guardarEstadoMusica() {
+                localStorage.setItem('musicaReproduciendo', 'true');
+            }
+
+            // Iniciar la música cuando el usuario interactúe con la página
+            document.addEventListener('click', () => {
+                audio.play();
+                guardarEstadoMusica();
+            }, { once: true });
+
+            // Hide loading screen after 2 seconds
+            setTimeout(() => {
+                document.querySelector('.loading').classList.add('fade-out');
+            }, 2000);
+
+            const slides = document.querySelectorAll('.slide');
+            let currentSlide = 0;
+            const slideInterval = 3000; // 3 seconds per slide
+
+            function nextSlide() {
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+
+                // Si hemos mostrado todas las diapositivas, mostrar la carta
+                if (currentSlide === 0) {
+                    setTimeout(() => {
+                        document.querySelector('.slideshow-container').classList.add('fade-out');
+                        setTimeout(() => {
+                            document.querySelector('.slideshow-container').style.display = 'none';
+                            document.querySelector('.carta-section').style.display = 'block';
+                            document.querySelector('.carta-section').classList.add('fade-in');
+                        }, 1500);
+                    }, slideInterval);
+                }
+            }
+
+            // Start the slideshow after loading screen
+            setTimeout(() => {
+                setInterval(nextSlide, slideInterval);
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
